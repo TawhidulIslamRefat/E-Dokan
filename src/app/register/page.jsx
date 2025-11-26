@@ -19,7 +19,6 @@ export default function Register() {
     const photo = event.target.photo.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(name, photo, email, password);
     createUser(email, password)
   .then((result) => {
     const user = result.user;
@@ -104,7 +103,7 @@ export default function Register() {
 
             <form onSubmit={handleRegister}>
               <fieldset className="fieldset">
-                {/* Name */}
+               
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Name
                 </label>
@@ -116,7 +115,7 @@ export default function Register() {
                   required
                 />
 
-                {/* Email */}
+                
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Email
                 </label>
@@ -128,7 +127,7 @@ export default function Register() {
                   required
                 />
 
-                {/* Password */}
+                
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Password
                 </label>
@@ -148,7 +147,7 @@ export default function Register() {
                   </span>
                 </div>
 
-                {/* Profile Image */}
+                
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Profile URL
                 </label>
@@ -159,7 +158,7 @@ export default function Register() {
                   className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
                 />
 
-                {/* Submit */}
+                
                 <button
                   type="submit"
                   className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-2 mb-2 w-full"
@@ -169,7 +168,7 @@ export default function Register() {
               </fieldset>
             </form>
 
-            {/* Google login */}
+            
             <button
               onClick={handleGoogleLogin}
               className="btn bg-white text-black border-[#e5e5e5] hover:bg-orange-900 hover:text-white w-full mt-2 flex items-center justify-center gap-2"
@@ -192,7 +191,6 @@ export default function Register() {
               Register with Google
             </button>
 
-            {/* Link to login */}
             <p className="text-sm md:text-[16px] font-semibold text-[#706F6F] text-center mt-4">
               Already have an account?{" "}
               <Link href="/login" className="text-[#A86111] hover:underline">

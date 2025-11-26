@@ -10,19 +10,19 @@ const PrivateRoute = ({ children }) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login"); // redirect if not logged in
+      router.push("/login"); 
     }
   }, [loading, user, router]);
 
   if (loading) {
-    return <h1>Loading...</h1>; // or a spinner
+    return <h1>Loading...</h1>; 
   }
 
   if (user) {
     return children;
   }
 
-  return null; // while redirecting
+  return null; 
 };
 
 export default PrivateRoute;

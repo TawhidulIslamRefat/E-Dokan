@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
    <div className="bg-base-300">
-      <footer className="footer sm:footer-horizontal w-10/12 mx-auto text-base-content p-10 text-[16px] font-medium">
+      <footer className="footer sm:footer-horizontal w-full md:w-10/12 mx-auto text-base-content p-10 text-[16px] font-medium">
         <nav className="space-y-1">
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Add Product</a>
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
         </nav>
       </footer>
-      <aside className="text-[16px] font-medium py-2 text-gray-600 text-center">
+      <aside className="text-[16px] font-medium py-2 text-gray-600 text-center bg-amber-100">
         <p>
           Copyright © {new Date().getFullYear()} - All right reserved by E-Dokan
         </p>

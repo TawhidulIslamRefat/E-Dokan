@@ -12,18 +12,18 @@ export default function ManageProducts() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Redirect if not logged in
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login");
     }
   }, [user, loading, router]);
 
-  // Fetch all products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/products");
+        const res = await fetch(
+          "https://e-dokan-server-dusky.vercel.app/products"
+        );
         const data = await res.json();
         setProducts(data);
       } catch (err) {
@@ -35,7 +35,6 @@ export default function ManageProducts() {
     fetchProducts();
   }, []);
 
-  // Delete product
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -45,15 +44,17 @@ export default function ManageProducts() {
       confirmButtonColor: "#FF5A3C",
       cancelButtonColor: "#555",
       confirmButtonText: "Yes,Delete !",
-    })
+    });
     try {
-      const res = await fetch(`http://localhost:5000/products/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://e-dokan-server-dusky.vercel.app/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
-        // Remove from state immediately
         setProducts(products.filter((p) => p._id !== id));
-         Swal.fire("Deleted!", "Property has been removed.", "success");
+        Swal.fire("Deleted!", "Property has been removed.", "success");
       } else {
         alert("Failed to delete product");
       }
@@ -67,7 +68,7 @@ export default function ManageProducts() {
   }
 
   return (
-    <div className="py-14 min-h-screen px-4 lg:px-16">
+    <div className=" py-8 md:py-14 min-h-screen px-4 lg:px-16">
       <h1 className="text-2xl md:text-4xl font-bold text-center mb-8">
         Manage <span className="text-[#A86111]">Products</span>
       </h1>
@@ -76,7 +77,7 @@ export default function ManageProducts() {
         <p className="text-center">No products found.</p>
       ) : (
         <>
-          {/* Table for Desktop */}
+         
           <div className="overflow-x-auto hidden lg:block">
             <table className="table table-zebra w-full">
               <thead>
@@ -117,12 +118,15 @@ export default function ManageProducts() {
             </table>
           </div>
 
-          {/* Grid for Mobile */}
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-5 mt-10">
             {products.map((product) => (
-              <div key={product._id} className="border rounded-md p-4 shadow-md">
+              <div
+                key={product._id}
+                className="border rounded-md p-4 shadow-md"
+              >
                 <h2 className="text-lg font-semibold">{product.title}</h2>
-                <p>Price: ${product.price}</p>
+                <p>Price: {product.price}</p>
                 <p>Date: {new Date(product.date).toLocaleDateString()}</p>
                 <p>Priority: {product.priority}</p>
                 <div className="flex gap-2 mt-2">

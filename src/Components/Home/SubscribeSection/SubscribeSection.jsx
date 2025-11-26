@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 export default function SubscribeSection() {
   const logos = [
@@ -11,8 +12,8 @@ export default function SubscribeSection() {
 
   return (
     <section className="bg-[#f8f3ee] py-16">
-      {/* Top Logos */}
-      <div className="flex justify-center gap-38 flex-wrap">
+     
+      <div className="justify-center gap-38 flex-wrap lg-flex hidden">
         {logos.map((logo, i) => (
           <Image
             key={i}
@@ -25,9 +26,9 @@ export default function SubscribeSection() {
         ))}
       </div>
 
-      {/* Subscribe Card */}
+     
       <div className="max-w-7xl mx-auto mt-16 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
-        {/* Left Content */}
+        
         <div className="bg-[#D1C4B0] w-full md:w-1/2 px-10 py-12 flex flex-col justify-center">
           <p className="text-sm tracking-[3px] text-gray-700">
             GET THE LATEST IN FURNITURE TRENDS, EXCLUSIVE OFFERS
@@ -48,7 +49,7 @@ export default function SubscribeSection() {
           </div>
         </div>
 
-        {/* Right Image */}
+       
         <div className="w-full md:w-1/2">
           <Image
             src="https://qx-plank.myshopify.com/cdn/shop/articles/blog-5_d28def92-20a2-47d3-b862-0e3c887f8047_360x.jpg?v=1747553776"

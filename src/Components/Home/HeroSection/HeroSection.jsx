@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="w-full bg-[#F7F2EE] my-10">
+    <section className="w-full bg-[#F7F2EE] my-5 md:my-10">
       <div className=" w-11/12 mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 py-20 gap-10">
 
-        {/* LEFT CONTENT */}
+        
         <div className="flex-1">
           <p className="uppercase tracking-[3px] text-[#A57B4E] text-sm font-medium mb-3">
             Minimal Meets Functional
@@ -20,12 +21,12 @@ export default function Home() {
             Stylish designs that bring warmth to your living space.
           </p>
 
-          <button className="bg-black text-white px-8 py-3 rounded-sm text-sm tracking-wider hover:bg-gray-800 duration-300 flex items-center gap-2">
+          <Link href='/products' className="bg-black text-white px-5 py-3 rounded-sm text-sm tracking-wider hover:bg-gray-800 duration-300">
             SHOP NOW →
-          </button>
+          </Link>
         </div>
 
-        {/* RIGHT IMAGE */}
+        
         <div className="flex-1 relative">
           <Image
             src="https://qx-plank.myshopify.com/cdn/shop/files/pexels-pixabay-276583.jpg?v=1737910247&width=1920"

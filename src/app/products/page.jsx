@@ -12,7 +12,7 @@ export default function ItemList() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://e-dokan-server-dusky.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -32,9 +32,8 @@ export default function ItemList() {
 
   return (
     <div className=" w-11/12 mx-auto px-4 py-10">
-      {/* Header + Search + Image */}
       <div className="flex flex-col lg:flex-row items-center justify-between mb-20 gap-6">
-        {/* Title + Description + Search */}
+       
         <div className="flex-1 flex flex-col justify-center text-center lg:text-left gap-4">
           <h1 className="text-4xl font-bold mb-2">Our Products</h1>
           <p className="text-gray-500 text-lg max-w-3xl">
@@ -43,7 +42,7 @@ export default function ItemList() {
             selections, find everything you need in one place.
           </p>
 
-          {/* Search + Category Filter */}
+          
           <div className="flex flex-col md:flex-row gap-4 mt-6 justify-center lg:justify-start">
             <input
               type="text"
@@ -55,7 +54,7 @@ export default function ItemList() {
           </div>
         </div>
 
-        {/* Image on the right */}
+        
         <div className="w-full lg:w-1/3 flex justify-center flex-1">
           <Image
             src="https://qx-plank.myshopify.com/cdn/shop/files/11.jpg?v=1739097813&width=1920"
@@ -69,7 +68,7 @@ export default function ItemList() {
       <div>
         <h1 className="text-4xl font-bold text-center py-10">All Products</h1>
       </div>
-      {/* Products Grid */}
+     
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
@@ -97,7 +96,10 @@ export default function ItemList() {
                   {product.priority} priority
                 </span>
               </div>
-              <button onClick={() => router.push(`/products/${product._id}`)} className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-auto">
+              <button
+                onClick={() => router.push(`/products/${product._id}`)}
+                className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-auto"
+              >
                 View Details
               </button>
             </div>

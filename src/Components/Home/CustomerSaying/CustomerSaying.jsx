@@ -16,41 +16,39 @@ export default function CustomerSaying() {
     { id: 5, name: "Maria Lopez", role: "Homeowner", rating: 4, title: "Comfortable & Stylish", message: "Very comfortable chairs and stylish design.", img: "https://qx-plank.myshopify.com/cdn/shop/files/testimonials2.gif?v=1738514383&width=300" },
     { id: 6, name: "David Kim", role: "Architect", rating: 5, title: "Perfect for Modern Homes", message: "Minimalist design fits perfectly in modern homes.", img: "https://qx-plank.myshopify.com/cdn/shop/files/testimonials1.gif?v=1738514384&width=300" },
   ];
-  const groupedReviews = [];
-  for (let i = 0; i < reviews.length; i += 3) {
-    groupedReviews.push(reviews.slice(i, i + 3));
-  }
 
   return (
-    <section className="py-20 w-10/12 mx-auto">
+    <section className="py-20 w-11/12 mx-auto">
       <h2 className="text-center text-sm tracking-[4px] text-yellow-600">REAL STORIES WITH OUR FURNITURE</h2>
       <h1 className="text-center text-3xl font-bold mt-2">What Our Customers Are Saying</h1>
 
       <div className="mt-12">
         <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={30}
-          navigation
+          modules={[Pagination]}
+          spaceBetween={20}
           pagination={{ clickable: true }}
           loop={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 3 },
+          }}
         >
-          {groupedReviews.map((group, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex gap-6">
-                {group.map((r) => (
-                  <div key={r.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition flex-1">
-                    <div className="flex gap-1 text-yellow-500">{"★".repeat(r.rating)}</div>
-                    <h3 className="text-xl font-semibold mt-4">{r.title}</h3>
-                    <p className="text-gray-600 mt-3">{r.message}</p>
-                    <div className="flex items-center gap-4 mt-6">
-                      <Image src={r.img} alt={r.name} width={50} height={50} className="rounded-full" />
-                      <div>
-                        <h4 className="font-semibold">{r.name}</h4>
-                        <p className="text-sm text-gray-500">{r.role}</p>
-                      </div>
-                    </div>
+          {reviews.map((r) => (
+            <SwiperSlide key={r.id}>
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition flex flex-col h-full">
+                <div className="flex gap-1 text-yellow-500">{"★".repeat(r.rating)}</div>
+                <h3 className="text-xl font-semibold mt-4">{r.title}</h3>
+                <p className="text-gray-600 mt-3">{r.message}</p>
+                <div className="flex items-center gap-4 mt-6">
+                  <Image src={r.img} alt={r.name} width={50} height={50} className="rounded-full" />
+                  <div>
+                    <h4 className="font-semibold">{r.name}</h4>
+                    <p className="text-sm text-gray-500">{r.role}</p>
                   </div>
-                ))}
+                </div>
               </div>
             </SwiperSlide>
           ))}

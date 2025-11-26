@@ -3,13 +3,12 @@
 import { use, useState } from "react";
 import Head from "next/head";
 import { AuthContext } from "@/Context/AuthContext";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 export default function AddItem() {
-    const { user } = use(AuthContext);
-     const router = useRouter();
+  const { user } = use(AuthContext);
+  const router = useRouter();
 
-
- const handleAddProduct = (e) => {
+  const handleAddProduct = (e) => {
     e.preventDefault();
 
     const newProduct = {
@@ -18,7 +17,7 @@ export default function AddItem() {
       priority: e.target.priority.value,
       price: parseFloat(e.target.price.value),
       fullDescription: e.target.fullDescription.value,
-      date:e.target.date.value,
+      date: e.target.date.value,
       imageUrl: e.target.image.value,
       postedBy: {
         name: user?.displayName,
@@ -26,7 +25,7 @@ export default function AddItem() {
         photo: user?.photoURL,
       },
     };
-    fetch("http://localhost:5000/products", {
+    fetch("https://e-dokan-server-dusky.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +34,7 @@ export default function AddItem() {
     })
       .then((res) => res.json())
       .then(() => {
-       Swal.fire({
+        Swal.fire({
           title: "Property Added !",
           text: "Your product listing has been successfully posted",
           icon: "success",
@@ -57,7 +56,7 @@ export default function AddItem() {
         </h1>
 
         <form onSubmit={handleAddProduct} className="w-full space-y-5">
-          {/* Title */}
+         
           <div>
             <label className="block font-semibold mb-1 text-sm">Title</label>
             <input
@@ -69,9 +68,11 @@ export default function AddItem() {
             />
           </div>
 
-          {/* Short Description */}
+          
           <div>
-            <label className="block font-semibold mb-1 text-sm">Short Description</label>
+            <label className="block font-semibold mb-1 text-sm">
+              Short Description
+            </label>
             <input
               type="text"
               name="shortDescription"
@@ -81,9 +82,11 @@ export default function AddItem() {
             />
           </div>
 
-          {/* Full Description */}
+          
           <div>
-            <label className="block font-semibold mb-1 text-sm">Full Description</label>
+            <label className="block font-semibold mb-1 text-sm">
+              Full Description
+            </label>
             <textarea
               name="fullDescription"
               className="textarea textarea-bordered w-full"
@@ -93,7 +96,7 @@ export default function AddItem() {
             ></textarea>
           </div>
 
-          {/* Price, Date, Priority */}
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block font-semibold mb-1 text-sm">Price</label>
@@ -113,11 +116,10 @@ export default function AddItem() {
               />
             </div>
             <div>
-              <label className="block font-semibold mb-1 text-sm">Priority</label>
-              <select
-                name="priority"
-                className="select select-bordered w-full"
-              >
+              <label className="block font-semibold mb-1 text-sm">
+                Priority
+              </label>
+              <select name="priority" className="select select-bordered w-full">
                 <option value="">Select priority</option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
@@ -126,9 +128,11 @@ export default function AddItem() {
             </div>
           </div>
 
-          {/* Optional Image URL */}
+        
           <div>
-            <label className="block font-semibold mb-1 text-sm">Image URL (optional)</label>
+            <label className="block font-semibold mb-1 text-sm">
+              Image URL (optional)
+            </label>
             <input
               type="text"
               name="image"
@@ -136,7 +140,7 @@ export default function AddItem() {
               placeholder="Enter image URL"
             />
           </div>
-                {/* User Info (readonly) */}
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <input
               type="text"
@@ -151,7 +155,7 @@ export default function AddItem() {
               readOnly
             />
           </div>
-          {/* Submit Button */}
+          
           <button
             type="submit"
             className="btn w-full bg-[#A86111] hover:bg-orange-900 text-white text-sm sm:text-lg py-2 rounded-md transition-all duration-300"

@@ -53,7 +53,7 @@ export default function Navbar() {
     <div className="bg-base-300 shadow-2xs sticky top-0 z-50">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
-          {/* Mobile Dropdown */}
+          
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -81,7 +81,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/">
-            <div className="text-3xl  font-semibold text-[#A86111] flex items-center gap-1">
+            <div className="text-sm sm:text-xl md:text-3xl  font-semibold text-[#A86111] flex items-center gap-1">
               <Image
                 src="https://qx-plank.myshopify.com/cdn/shop/files/fav-icon.png?v=1738776228&width=240"
                 alt="E-Dokan Logo"
@@ -94,7 +94,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
@@ -134,14 +133,14 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
+                className="text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
+                className="text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2  rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
               >
                 Register
