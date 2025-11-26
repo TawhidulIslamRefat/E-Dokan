@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const HeroSection = () => {
+export default function Home() {
   return (
     <section className="w-full bg-[#F7F2EE] my-10">
       <div className=" w-11/12 mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 py-20 gap-10">
@@ -39,6 +39,5 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+}
 
-export default HeroSection;

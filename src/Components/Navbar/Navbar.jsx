@@ -1,8 +1,8 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-
-const Navbar = () => {
-  const links = (
+export default function Navbar() {
+     const links = (
     <>
       <li className="text-lg font-medium">
         <Link href="/">Home</Link>
@@ -16,11 +16,9 @@ const Navbar = () => {
       <li className="text-lg font-medium">
         <Link href="/manage-products">Manage Products</Link>
       </li>
-    </>
-  );
-
+    </>);
   return (
-    <div className="bg-base-300 shadow-2xs">
+   <div className="bg-base-300 shadow-2xs">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           {/* Mobile Dropdown */}
@@ -50,8 +48,17 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <Link href="/" className="text-3xl font-semibold text-[#A86111]">
-            E-Dokan
+          <Link href="/">
+            <div className="text-3xl font-semibold text-[#A86111] flex items-center gap-1">
+              <Image
+                src="https://qx-plank.myshopify.com/cdn/shop/files/fav-icon.png?v=1738776228&width=240"
+                alt="E-Dokan Logo"
+                width={40}
+                height={40}
+                className="object-cover"
+              />
+              <span>E-Dokan</span>
+            </div>
           </Link>
         </div>
 
@@ -62,7 +69,7 @@ const Navbar = () => {
 
         <div className="navbar-end space-x-4">
           <Link
-            href="/login"
+            href="/Login"
             className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
           >
@@ -79,6 +86,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Navbar;
+
