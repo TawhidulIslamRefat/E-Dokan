@@ -2,21 +2,44 @@
 
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { use, useState } from "react";
 import Head from "next/head";
+import { AuthContext } from "@/Context/AuthContext";
+import { useRouter } from "next/navigation";
+ 
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { signIn, setUser, signInGoogle } = use(AuthContext);
+  const router = useRouter();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+        router.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+    signInGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+        router.push("/")
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -38,8 +61,7 @@ export default function Login() {
                 </label>
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
                   placeholder="Enter your email address"
                   className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3]  rounded-md focus:outline-none mb-5"
                 />
@@ -50,8 +72,7 @@ export default function Login() {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
                     placeholder="Enter your password"
                     className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3]  rounded-md focus:outline-none"
                   />
@@ -64,7 +85,10 @@ export default function Login() {
                 </div>
 
                 <div className="mt-2">
-                  <Link href="/forget-pass" className="link link-hover text-[13px]">
+                  <Link
+                    href="/forget-pass"
+                    className="link link-hover text-[13px]"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -91,10 +115,22 @@ export default function Login() {
               >
                 <g>
                   <path d="m0 0H512V512H0" fill="#fff"></path>
-                  <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
-                  <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
-                  <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
-                  <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
                 </g>
               </svg>
               Login with Google

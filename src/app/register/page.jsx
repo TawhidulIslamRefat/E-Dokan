@@ -1,24 +1,60 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation"; 
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { use, useState } from "react";
 import Head from "next/head";
+import { AuthContext } from "@/Context/AuthContext";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [image, setImage] = useState(null);
+  const { createUser, setUser, signInGoogle, updateUser } = use(AuthContext);
+   const router = useRouter();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log({ name, email, password, image });
-  };
+   const handleRegister = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const photo = event.target.photo.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(name, photo, email, password);
+    createUser(email, password)
+  .then((result) => {
+    const user = result.user;
 
-  const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+    updateUser({
+      displayName: name,
+      photoURL: photo,
+    })
+      .then(() => {
+        setUser({
+          ...user,
+          displayName: name,
+          photoURL: photo,
+        });
+      })
+      router.push("/")
+      .catch((error) => {
+        console.log("Update user error:", error);
+      });
+  })
+  .catch((error) => {
+    console.log("Create user error:", error);
+  });
+   }
+
+   const handleGoogleLogin = () => {
+    signInGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+        router.push("/")
+      })
+      .catch((error) => {
+       console.log(error);
+      });
   };
 
 
@@ -42,8 +78,7 @@ export default function Register() {
                 </label>
                 <input
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  name="name"
                   placeholder="Enter your name"
                   className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
                   required
@@ -55,8 +90,7 @@ export default function Register() {
                 </label>
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
                   placeholder="Enter your email"
                   className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
                   required
@@ -69,8 +103,7 @@ export default function Register() {
                 <div className="relative mb-4">
                   <input
                     type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
                     placeholder="Enter your password"
                     className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none "
                     required
@@ -89,6 +122,7 @@ export default function Register() {
                 </label>
                 <input
                   type="text"
+                  name="photo"
                   placeholder="Profile URL"
                   className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
                 />

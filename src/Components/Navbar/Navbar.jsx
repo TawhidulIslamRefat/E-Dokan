@@ -1,8 +1,11 @@
 "use client";
+import { AuthContext } from "@/Context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
+import { use } from "react";
 export default function Navbar() {
-     const links = (
+  const { user, logOut } = use(AuthContext);
+  const links = (
     <>
       <li className="text-lg font-medium">
         <Link href="/">Home</Link>
@@ -10,15 +13,20 @@ export default function Navbar() {
       <li className="text-lg font-medium">
         <Link href="/products">All Products</Link>
       </li>
-      <li className="text-lg font-medium">
-        <Link href="/add-product">Add Products</Link>
-      </li>
-      <li className="text-lg font-medium">
-        <Link href="/manage-products">Manage Products</Link>
-      </li>
-    </>);
+    </>
+  );
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        alert("Logout Successful");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
   return (
-   <div className="bg-base-300 shadow-2xs">
+    <div className="bg-base-300 shadow-2xs sticky top-0 z-50">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           {/* Mobile Dropdown */}
@@ -66,26 +74,62 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-
         <div className="navbar-end space-x-4">
-          <Link
-            href="/login"
-            className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
+          {user && user.photoURL ? (
+            <>
+              <div className="dropdown dropdown-left">
+                <div tabIndex={0} role="button" className=" m-1">
+                  <Image
+                    className="h-10 md:h-12 rounded-full"
+                    src={user.photoURL}
+                    width={45}
+                    height={30}
+                    alt="user avator"
+                  />
+                </div>
+                <div
+                  tabIndex="-1"
+                  className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm mt-16"
+                >
+                  <div className="border-b-2 border-gray-400">
+                    <li className="text-lg font-medium">
+                      <Link href="/addProductPage">Add Products</Link>
+                    </li>
+                    <li className="text-lg font-medium mb-2">
+                      <Link href="/manage-products">Manage Products</Link>
+                    </li>
+                  </div>
+                  <div>
+                    <button
+                      className=" btn bg-[#A76111] text-white w-full text-[12px] md:text-[15px] my-1 md:my-2"
+                      onClick={handleLogOut}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
-          >
-            Register
-          </Link>
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-

@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com", "qx-plank.myshopify.com"],
+    domains: [
+      "images.unsplash.com",
+      "qx-plank.myshopify.com",
+      "lh3.googleusercontent.com"
+    ],
   },
-  /* config options here */
   reactCompiler: true,
 };
 

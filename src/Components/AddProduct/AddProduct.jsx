@@ -1,27 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import Head from "next/head";
+import { AuthContext } from "@/Context/AuthContext";
+import { useRouter } from "next/navigation"; 
+export default function AddItem() {
+    const { user } = use(AuthContext);
+     const router = useRouter();
 
-export default function AddItem({ user }) {
-  const [formData, setFormData] = useState({
-    title: "",
-    shortDescription: "",
-    fullDescription: "",
-    price: "",
-    date: "",
-    priority: "",
-    image: "",
-  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+ const handleAddProduct = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    // এখানে API call বা DB logic লাগবে
+
+    const newProduct = {
+      title: e.target.title.value,
+      shortDescription: e.target.shortDescription.value,
+      priority: e.target.priority.value,
+      price: parseFloat(e.target.price.value),
+      fullDescription: e.target.fullDescription.value,
+      date:e.target.date.value,
+      imageUrl: e.target.image.value,
+      postedBy: {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+      },
+    };
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then(() => {
+       alert("added successfully")
+        router.push("/products");
+      });
   };
 
   return (
@@ -35,15 +51,13 @@ export default function AddItem({ user }) {
           Add New <span className="text-[#A86111]">Product</span>
         </h1>
 
-        <form onSubmit={handleSubmit} className="w-full space-y-5">
+        <form onSubmit={handleAddProduct} className="w-full space-y-5">
           {/* Title */}
           <div>
             <label className="block font-semibold mb-1 text-sm">Title</label>
             <input
               type="text"
               name="title"
-              value={formData.title}
-              onChange={handleChange}
               className="input input-bordered w-full"
               placeholder="Enter title"
               required
@@ -56,8 +70,6 @@ export default function AddItem({ user }) {
             <input
               type="text"
               name="shortDescription"
-              value={formData.shortDescription}
-              onChange={handleChange}
               className="input input-bordered w-full"
               placeholder="Enter short description"
               required
@@ -69,8 +81,6 @@ export default function AddItem({ user }) {
             <label className="block font-semibold mb-1 text-sm">Full Description</label>
             <textarea
               name="fullDescription"
-              value={formData.fullDescription}
-              onChange={handleChange}
               className="textarea textarea-bordered w-full"
               rows="4"
               placeholder="Enter full description"
@@ -85,8 +95,6 @@ export default function AddItem({ user }) {
               <input
                 type="number"
                 name="price"
-                value={formData.price}
-                onChange={handleChange}
                 className="input input-bordered w-full"
                 placeholder="Enter price"
               />
@@ -96,8 +104,6 @@ export default function AddItem({ user }) {
               <input
                 type="date"
                 name="date"
-                value={formData.date}
-                onChange={handleChange}
                 className="input input-bordered w-full"
               />
             </div>
@@ -105,8 +111,6 @@ export default function AddItem({ user }) {
               <label className="block font-semibold mb-1 text-sm">Priority</label>
               <select
                 name="priority"
-                value={formData.priority}
-                onChange={handleChange}
                 className="select select-bordered w-full"
               >
                 <option value="">Select priority</option>
@@ -123,8 +127,6 @@ export default function AddItem({ user }) {
             <input
               type="text"
               name="image"
-              value={formData.image}
-              onChange={handleChange}
               className="input input-bordered w-full"
               placeholder="Enter image URL"
             />

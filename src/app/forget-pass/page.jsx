@@ -1,16 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/Context/AuthContext";
 export default function ForgetPassword() {
   const [email, setEmail] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Reset email:", email);
-    // Here you can trigger your password reset logic
+    const { forgetPassword } = use(AuthContext);
+      const router = useRouter();
+  const handleForgetPassword = (event) => {
+    event.preventDefault();
+    if (!email) {
+       alert("email enter fast")
+      return;
+    }
+    forgetPassword(email)
+      .then(() => {
+        alert("Password Reset email sent! Check your Inbox")
+        router.push("/login");
+      })
+      .catch((error) => {
+        alert(error)
+      });
   };
 
   return (
@@ -29,12 +41,13 @@ export default function ForgetPassword() {
               Enter your email below to receive a password reset link.
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleForgetPassword}>
               <label className="label text-gray-700 font-semibold mb-1">
                 Email
               </label>
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
