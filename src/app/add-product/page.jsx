@@ -149,7 +149,7 @@ export default function AddItem({ user }) {
             type="submit"
             className="btn w-full bg-[#A86111] hover:bg-orange-900 text-white text-sm sm:text-lg py-2 rounded-md transition-all duration-300"
           >
-            Add Item
+            Add Product
           </button>
         </form>
       </div>

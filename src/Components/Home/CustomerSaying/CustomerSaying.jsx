@@ -33,6 +33,69 @@ export default function CustomerSaying() {
         "Love that I can decorate my space beautifully without compromising on sustainability.",
       img: "/user3.jpg",
     },
+  {
+    "id": 4,
+    "name": "John Smith",
+    "role": "Interior Designer",
+    "rating": 5,
+    "title": "Amazing Furniture Quality",
+    "message": "The furniture quality exceeded my expectations. Highly recommend for modern homes.",
+    "img": "/user1.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Maria Lopez",
+    "role": "Homeowner",
+    "rating": 4,
+    "title": "Comfortable and Stylish",
+    "message": "Very comfortable chairs and stylish design. It really transformed my living room.",
+    "img": "/user2.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Emily Zhao",
+    "role": "Eco-conscious Blogger",
+    "rating": 5,
+    "title": "Stylish & Sustainable Space Beautifully",
+    "message": "Love that I can decorate my space beautifully without compromising on sustainability.",
+    "img": "/user3.jpg"
+  },
+  {
+    "id": 7,
+    "name": "David Kim",
+    "role": "Architect",
+    "rating": 5,
+    "title": "Perfect for Modern Homes",
+    "message": "The minimalist design fits perfectly in modern homes and offices.",
+    "img": "/user4.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Sophia Patel",
+    "role": "Blogger",
+    "rating": 4,
+    "title": "High Quality & Elegant",
+    "message": "Elegant furniture with great build quality. Makes my home look luxurious.",
+    "img": "/user5.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Liam Johnson",
+    "role": "Student",
+    "rating": 5,
+    "title": "Affordable and Stylish",
+    "message": "Affordable furniture that looks stylish. Perfect for dorms and small apartments.",
+    "img": "/user6.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Olivia Brown",
+    "role": "Home Decor Enthusiast",
+    "rating": 5,
+    "title": "Loved It!",
+    "message": "Absolutely loved it! The colors and material are top-notch.",
+    "img": "/user7.jpg"
+  }
   ];
 
   return (
