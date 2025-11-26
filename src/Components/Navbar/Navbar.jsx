@@ -69,14 +69,14 @@ export default function Navbar() {
 
         <div className="navbar-end space-x-4">
           <Link
-            href="/Login"
+            href="/login"
             className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
           >
             Login
           </Link>
           <Link
-            href="/Register"
+            href="/register"
             className="text-white bg-[#A76111] text-lg font-medium px-4 py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300"
           >

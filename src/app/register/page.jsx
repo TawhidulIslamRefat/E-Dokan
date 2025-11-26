@@ -5,34 +5,51 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import Head from "next/head";
 
-export default function Login() {
+export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    console.log({ name, email, password, image });
   };
 
   const handleGoogleLogin = () => {
     console.log("Google login clicked");
   };
 
+
   return (
     <div>
       <Head>
-        <title>Login</title>
+        <title>Register</title>
       </Head>
       <div className="flex justify-center items-center min-h-screen">
-        <div className="card bg-base-100 w-[95%] md:w-[70%] lg:w-[60%] 2xl:w-[35%] rounded-2xl shadow-2xl">
+        <div className="card bg-base-100 w-[95%] md:w-[70%] lg:w-[60%] 2xl:w-[35%] rounded-[15px] shadow-2xl">
           <div className="card-body px-4 lg:px-16">
             <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold text-center mt-2 lg:mt-8 pb-3 lg:pb-10 border-b border-base-300 px-5">
-              Login your <span className="text-[#A86111]">account</span>
+              Create your <span className="text-[#A86111]">account</span>
             </h1>
 
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleRegister}>
               <fieldset className="fieldset">
+                {/* Name */}
+                <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your name"
+                  className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
+                  required
+                />
+
+                {/* Email */}
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Email
                 </label>
@@ -40,20 +57,23 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3]  rounded-md focus:outline-none mb-5"
+                  placeholder="Enter your email"
+                  className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
+                  required
                 />
 
+                {/* Password */}
                 <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
                   Password
                 </label>
-                <div className="relative">
+                <div className="relative mb-4">
                   <input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3]  rounded-md focus:outline-none"
+                    className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none "
+                    required
                   />
                   <span
                     onClick={() => setShowPassword(!showPassword)}
@@ -63,21 +83,27 @@ export default function Login() {
                   </span>
                 </div>
 
-                <div className="mt-2">
-                  <Link href="/forget-pass" className="link link-hover text-[13px]">
-                    Forgot password?
-                  </Link>
-                </div>
+                {/* Profile Image */}
+                <label className="label text-sm sm:text-xl font-semibold text-[#403F3F] mb-1 lg:mb-3">
+                  Profile URL
+                </label>
+                <input
+                  type="text"
+                  placeholder="Profile URL"
+                  className="input w-full text-xs sm:text-base p-2 sm:p-3 bg-[#F3F3F3] text-gray-500 rounded-md focus:outline-none  mb-4"
+                />
 
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-4 mb-2 w-full"
+                  className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-2 mb-2 w-full"
                 >
-                  Login
+                  Register
                 </button>
               </fieldset>
             </form>
 
+            {/* Google login */}
             <button
               onClick={handleGoogleLogin}
               className="btn bg-white text-black border-[#e5e5e5] hover:bg-orange-900 hover:text-white w-full mt-2 flex items-center justify-center gap-2"
@@ -97,13 +123,14 @@ export default function Login() {
                   <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
                 </g>
               </svg>
-              Login with Google
+              Register with Google
             </button>
 
+            {/* Link to login */}
             <p className="text-sm md:text-[16px] font-semibold text-[#706F6F] text-center mt-4">
-              Don’t Have An Account?{" "}
-              <Link href="/register" className="text-[#A86111] hover:underline">
-                Register
+              Already have an account?{" "}
+              <Link href="/login" className="text-[#A86111] hover:underline">
+                Login
               </Link>
             </p>
           </div>
