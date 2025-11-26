@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { use, useState } from "react";
 import Head from "next/head";
 import { AuthContext } from "@/Context/AuthContext";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,14 +34,33 @@ export default function Register() {
           displayName: name,
           photoURL: photo,
         });
+         Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Sign Up Successful",
+                showConfirmButton: false,
+                timer: 1500,
+              });
       })
       router.push("/")
       .catch((error) => {
-        console.log("Update user error:", error);
+         Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          confirmButtonColor:"#FF5A3C",
+          error,
+        });
       });
   })
   .catch((error) => {
-    console.log("Create user error:", error);
+     Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          confirmButtonColor:"#FF5A3C",
+          error,
+        });
   });
    }
 
@@ -49,11 +69,23 @@ export default function Register() {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
+         Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Sign Up Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
         router.push("/")
       })
       .catch((error) => {
-       console.log(error);
+       Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          confirmButtonColor:"#FF5A3C",
+          error,
+        });
       });
   };
 

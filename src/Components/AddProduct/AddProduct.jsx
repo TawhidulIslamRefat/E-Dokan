@@ -35,7 +35,12 @@ export default function AddItem() {
     })
       .then((res) => res.json())
       .then(() => {
-       alert("added successfully")
+       Swal.fire({
+          title: "Property Added !",
+          text: "Your product listing has been successfully posted",
+          icon: "success",
+          confirmButtonColor: "#FF5A3C",
+        });
         router.push("/products");
       });
   };

@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function ItemList() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("http://localhost:5000/products")
@@ -95,7 +97,7 @@ export default function ItemList() {
                   {product.priority} priority
                 </span>
               </div>
-              <button className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-auto">
+              <button onClick={() => router.push(`/products/${product._id}`)} className="btn bg-[#A86111] hover:bg-orange-900 text-white mt-auto">
                 View Details
               </button>
             </div>

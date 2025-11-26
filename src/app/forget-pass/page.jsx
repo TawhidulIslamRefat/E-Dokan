@@ -5,6 +5,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/Context/AuthContext";
+import Swal from "sweetalert2";
 export default function ForgetPassword() {
   const [email, setEmail] = useState("");
     const { forgetPassword } = use(AuthContext);
@@ -12,16 +13,31 @@ export default function ForgetPassword() {
   const handleForgetPassword = (event) => {
     event.preventDefault();
     if (!email) {
-       alert("email enter fast")
+       Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please Enter Your Email First",
+              });
       return;
     }
     forgetPassword(email)
       .then(() => {
-        alert("Password Reset email sent! Check your Inbox")
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Password Reset email sent! Check your Inbox",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         router.push("/login");
       })
       .catch((error) => {
-        alert(error)
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.message,
+                confirmButtonColor:"#FF5A3C"
+              });
       });
   };
 

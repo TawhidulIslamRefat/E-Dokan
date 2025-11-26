@@ -6,6 +6,7 @@ import { use, useState } from "react";
 import Head from "next/head";
 import { AuthContext } from "@/Context/AuthContext";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
  
 
 export default function Login() {
@@ -22,10 +23,22 @@ export default function Login() {
         const user = result.user;
         console.log(user);
         setUser(user);
+         Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Login Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+         Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",error,
+              confirmButtonColor:"#FF5A3C"
+            });
       });
   };
 
@@ -34,11 +47,23 @@ export default function Login() {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
+         Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         router.push("/")
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          confirmButtonColor:"#FF5A3C",
+          error,
+        });
       });
   };
 

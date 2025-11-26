@@ -1,17 +1,41 @@
 "use client";
 import { AuthContext } from "@/Context/AuthContext";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
 export default function Navbar() {
   const { user, logOut } = use(AuthContext);
+  const pathname = usePathname();
   const links = (
     <>
-      <li className="text-lg font-medium">
+      <li
+        className={`text-lg font-medium ${
+          pathname === "/" ? "text-[#A86111] font-bold" : ""
+        }`}
+      >
         <Link href="/">Home</Link>
       </li>
-      <li className="text-lg font-medium">
+      <li
+        className={`text-lg font-medium ${
+          pathname.startsWith("/products") ? "text-[#A86111] font-bold" : ""
+        }`}
+      >
         <Link href="/products">All Products</Link>
+      </li>
+      <li
+        className={`text-lg font-medium ${
+          pathname === "/addProductPage" ? "text-[#A86111] font-bold" : ""
+        }`}
+      >
+        <Link href="/addProductPage">Add Products</Link>
+      </li>
+      <li
+        className={`text-lg font-medium mb-2 ${
+          pathname === "/manageProducts" ? "text-[#A86111] font-bold" : ""
+        }`}
+      >
+        <Link href="/manageProducts">Manage Products</Link>
       </li>
     </>
   );
@@ -50,14 +74,14 @@ export default function Navbar() {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-300 rounded-box mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           </div>
 
           <Link href="/">
-            <div className="text-3xl font-semibold text-[#A86111] flex items-center gap-1">
+            <div className="text-3xl  font-semibold text-[#A86111] flex items-center gap-1">
               <Image
                 src="https://qx-plank.myshopify.com/cdn/shop/files/fav-icon.png?v=1738776228&width=240"
                 alt="E-Dokan Logo"
@@ -91,13 +115,9 @@ export default function Navbar() {
                   tabIndex="-1"
                   className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm mt-16"
                 >
-                  <div className="border-b-2 border-gray-400">
-                    <li className="text-lg font-medium">
-                      <Link href="/addProductPage">Add Products</Link>
-                    </li>
-                    <li className="text-lg font-medium mb-2">
-                      <Link href="/manage-products">Manage Products</Link>
-                    </li>
+                    <div className="border-b-2 border-gray-400">
+                    <h1 className="text-sm md:text-[18px] font-bold pt-2 text-center">{user.displayName}</h1>
+                   <p className="text-xs md:text-sm text-black pb-2 text-center">{user.email}</p>
                   </div>
                   <div>
                     <button
