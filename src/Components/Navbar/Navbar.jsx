@@ -151,7 +151,7 @@ export default function Navbar() {
           ) : (
             <>
               <Link
-                href="/login"
+                href="/loginPage"
                 className={`text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2 rounded-sm 
              hover:bg-black transform hover:scale-105 duration-300`}
               >

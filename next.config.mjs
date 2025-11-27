@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: [
-      "images.unsplash.com",
-      "qx-plank.myshopify.com",
-      "lh3.googleusercontent.com",
-      "img.icons8.com"
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
-  reactCompiler: true,
 };
 
 export default nextConfig;
