@@ -21,7 +21,7 @@ export default function Home() {
             Stylish designs that bring warmth to your living space.
           </p>
 
-          <Link href='/products' className="bg-black text-white px-5 py-3 rounded-sm text-sm tracking-wider hover:bg-gray-800 duration-300">
+          <Link href='/products' className=" border hover:bg-[#A76111] px-5 py-3 rounded-sm text-sm tracking-wider duration-300 font-medium">
             SHOP NOW →
           </Link>
         </div>

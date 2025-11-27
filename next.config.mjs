@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       "images.unsplash.com",
       "qx-plank.myshopify.com",
-      "lh3.googleusercontent.com"
+      "lh3.googleusercontent.com",
+      "img.icons8.com"
     ],
   },
   reactCompiler: true,

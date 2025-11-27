@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
         </nav>
       </footer>
-      <aside className="text-[16px] font-medium py-2 text-gray-600 text-center bg-amber-100">
+      <aside className="text-[16px] font-medium py-2 text-gray-600 text-center bg-[#a7763a]">
         <p>
           Copyright © {new Date().getFullYear()} - All right reserved by E-Dokan
         </p>

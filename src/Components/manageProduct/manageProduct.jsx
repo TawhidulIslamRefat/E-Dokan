@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/Context/AuthContext";
 import Swal from "sweetalert2";
+import Loading from "../Loading/Loading";
 
 export default function ManageProducts() {
   const router = useRouter();
@@ -64,7 +65,7 @@ export default function ManageProducts() {
   };
 
   if (loading || isLoading) {
-    return <p className="text-center mt-20">Loading...</p>;
+    return <Loading></Loading>
   }
 
   return (

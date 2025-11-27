@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 
 export default function MarqueeSection() {
   return (
-    <div className="py-6 bg-linear-to-r from-[#a78f31] to-[#141111] my-6">
+    <div className=" py-2.5 md:py-6 bg-linear-to-r from-[#a78f31] to-[#141111] my-6">
       <Marquee gradient={false} speed={150}>
         <span className="mx-6 text-xl font-semibold flex items-center gap-2">
           <Image

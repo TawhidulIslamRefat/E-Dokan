@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Loading from "@/Components/Loading/Loading";
 
 export default function ItemList() {
   const [search, setSearch] = useState("");
@@ -28,7 +29,7 @@ export default function ItemList() {
     );
   });
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <Loading></Loading>
 
   return (
     <div className=" w-11/12 mx-auto px-4 py-10">

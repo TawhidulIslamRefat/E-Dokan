@@ -4,6 +4,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
+import Swal from "sweetalert2";
 export default function Navbar() {
   const { user, logOut } = use(AuthContext);
   const pathname = usePathname();
@@ -23,42 +24,56 @@ export default function Navbar() {
       >
         <Link href="/products">All Products</Link>
       </li>
-      <li
-        className={`text-lg font-medium ${
-          pathname === "/addProductPage" ? "text-[#A86111] font-bold" : ""
-        }`}
-      >
-        <Link href="/addProductPage">Add Products</Link>
-      </li>
-      <li
-        className={`text-lg font-medium mb-2 ${
-          pathname === "/manageProducts" ? "text-[#A86111] font-bold" : ""
-        }`}
-      >
-        <Link href="/manageProducts">Manage Products</Link>
-      </li>
+      {user && (
+        <>
+          <li
+            className={`text-lg font-medium ${
+              pathname === "/addProductPage" ? "text-[#A86111] font-bold" : ""
+            }`}
+          >
+            <Link href="/addProductPage">Add Products</Link>
+          </li>
+          <li
+            className={`text-lg font-medium mb-2 ${
+              pathname === "/manageProducts" ? "text-[#A86111] font-bold" : ""
+            }`}
+          >
+            <Link href="/manageProducts">Manage Products</Link>
+          </li>
+        </>
+      )}
     </>
   );
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        alert("Logout Successful");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logout Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
-        alert(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong! ",
+          error,
+        });
       });
   };
   return (
     <div className="bg-base-300 shadow-2xs sticky top-0 z-50">
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar w-full lg:w-11/12 mx-auto">
         <div className="navbar-start">
-          
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className=" p-2 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -97,7 +112,7 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end space-x-4">
+        <div className="navbar-end space-x-1.5 md:space-x-4">
           {user && user.photoURL ? (
             <>
               <div className="dropdown dropdown-left">
@@ -105,8 +120,8 @@ export default function Navbar() {
                   <Image
                     className="h-10 md:h-12 rounded-full"
                     src={user.photoURL}
-                    width={45}
-                    height={30}
+                    width={35}
+                    height={20}
                     alt="user avator"
                   />
                 </div>
@@ -114,9 +129,13 @@ export default function Navbar() {
                   tabIndex="-1"
                   className="dropdown-content menu bg-base-300 rounded-box z-1 w-65 p-2 shadow-sm mt-16"
                 >
-                    <div className="border-b-2 border-gray-400">
-                    <h1 className="text-sm md:text-[18px] font-bold pt-2 text-center">{user.displayName}</h1>
-                   <p className="text-xs md:text-sm text-black pb-2 text-center">{user.email}</p>
+                  <div className="border-b-2 border-gray-400">
+                    <h1 className="text-sm md:text-[18px] font-bold pt-2 text-center">
+                      {user.displayName}
+                    </h1>
+                    <p className="text-xs md:text-sm text-black pb-2 text-center">
+                      {user.email}
+                    </p>
                   </div>
                   <div>
                     <button
@@ -133,15 +152,15 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2 rounded-sm 
-             hover:bg-black transform hover:scale-105 duration-300"
+                className={`text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2 rounded-sm 
+             hover:bg-black transform hover:scale-105 duration-300`}
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2  rounded-sm 
-             hover:bg-black transform hover:scale-105 duration-300"
+                className={`text-white bg-[#A76111] text-lg font-medium px-2 py-1 md:px-4 md:py-2  rounded-sm 
+             hover:bg-black transform hover:scale-105 duration-300`}
               >
                 Register
               </Link>
