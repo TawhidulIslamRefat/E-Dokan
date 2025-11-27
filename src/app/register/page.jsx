@@ -47,7 +47,7 @@ export default function Register() {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          confirmButtonColor:"#FF5A3C",
+          confirmButtonColor:"#A76111",
           error,
         });
       });
@@ -57,7 +57,7 @@ export default function Register() {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          confirmButtonColor:"#FF5A3C",
+          confirmButtonColor:"#A76111",
           error,
         });
   });
@@ -82,7 +82,7 @@ export default function Register() {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          confirmButtonColor:"#FF5A3C",
+          confirmButtonColor:"#A76111",
           error,
         });
       });

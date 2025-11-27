@@ -36,33 +36,36 @@ export default function ManageProducts() {
     fetchProducts();
   }, []);
 
-  const handleDelete = async (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "This property will be permanently remove !",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#FF5A3C",
-      cancelButtonColor: "#555",
-      confirmButtonText: "Yes,Delete !",
-    });
+ const handleDelete = async (id) => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "This property will be permanently removed!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#A76111",
+    cancelButtonColor: "#555",
+    confirmButtonText: "Yes, Delete!",
+  });
+
+  if (result.isConfirmed) {
     try {
       const res = await fetch(
         `https://e-dokan-server-dusky.vercel.app/products/${id}`,
-        {
-          method: "DELETE",
-        }
+        { method: "DELETE" }
       );
+
       if (res.ok) {
         setProducts(products.filter((p) => p._id !== id));
         Swal.fire("Deleted!", "Property has been removed.", "success");
       } else {
-        alert("Failed to delete product");
+        Swal.fire("Error!", "Failed to delete product.", "error");
       }
     } catch (err) {
       console.error(err);
+      Swal.fire("Error!", "Something went wrong.", "error");
     }
-  };
+  }
+};
 
   if (loading || isLoading) {
     return <Loading></Loading>
@@ -96,7 +99,7 @@ export default function ManageProducts() {
                   <tr key={product._id}>
                     <td>{idx + 1}</td>
                     <td>{product.title}</td>
-                    <td>{product.price}</td>
+                    <td>${product.price}</td>
                     <td>{new Date(product.date).toLocaleDateString()}</td>
                     <td>{product.priority}</td>
                     <td className="flex gap-2">

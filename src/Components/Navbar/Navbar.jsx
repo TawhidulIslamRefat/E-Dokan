@@ -120,8 +120,8 @@ export default function Navbar() {
                   <Image
                     className="h-10 md:h-12 rounded-full"
                     src={user.photoURL}
-                    width={35}
-                    height={20}
+                    width={45}
+                    height={15}
                     alt="user avator"
                   />
                 </div>

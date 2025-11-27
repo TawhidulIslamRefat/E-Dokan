@@ -4,6 +4,7 @@ import { use, useState } from "react";
 import Head from "next/head";
 import { AuthContext } from "@/Context/AuthContext";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 export default function AddItem() {
   const { user } = use(AuthContext);
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function AddItem() {
           title: "Property Added !",
           text: "Your product listing has been successfully posted",
           icon: "success",
-          confirmButtonColor: "#FF5A3C",
+          confirmButtonColor: "#A76111",
         });
         router.push("/products");
       });

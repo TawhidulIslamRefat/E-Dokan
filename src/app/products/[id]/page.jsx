@@ -38,7 +38,7 @@ export default function ProductDetailsPage() {
       </p>
       <div className="text-gray-600">
         <p className="text-xl font-medium text-red-500 ">
-          Price: <span>{product.price}</span>
+          Price: <span>${product.price}</span>
         </p>
         <p className="text-xl font-medium text-gray-800 my-1">
           Date: <span>{product.date}</span>

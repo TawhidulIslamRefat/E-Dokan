@@ -36,7 +36,7 @@ export default function ForgetPassword() {
                 icon: "error",
                 title: "Oops...",
                 text: error.message,
-                confirmButtonColor:"#FF5A3C"
+                confirmButtonColor:"#A76111"
               });
       });
   };

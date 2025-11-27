@@ -91,7 +91,7 @@ export default function ItemList() {
               </p>
               <div className="flex items-center justify-between mb-4">
                 <span className="font-bold text-red-500 text-lg">
-                  {product.price}
+                  ${product.price}
                 </span>
                 <span className="text-sm font-medium text-green-400 capitalize">
                   {product.priority} priority
