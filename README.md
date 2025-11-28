@@ -1,7 +1,7 @@
 # E-Dokan
 
 ## Short Project Description
-E-Dokan is a modern e-commerce platform built with **Next.js 13 (App Router)** and **Tailwind CSS**.  
+E-Dokan is a modern e-commerce platform built with **Next.js 16 (App Router)** and **Tailwind CSS**.  
 Users can browse products, register/login, manage their account, and perform CRUD operations if authorized.  
 It includes features like authentication, protected routes, and a loading spinner during page navigation for a better user experience.
 
