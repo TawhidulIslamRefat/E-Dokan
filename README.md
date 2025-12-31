@@ -23,6 +23,18 @@ It includes secure authentication, protected routes, and a smooth loading spinne
 
 ---
 
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="https://i.ibb.co/XfqYYxcZ/Screenshot-2025-12-31-124609.png" width="48%" />
+  <img src="https://i.ibb.co/DDNMy27N/Screenshot-2025-12-31-124634.png" width="48%" />
+</p>
+<p align="center">
+  <img src="https://i.ibb.co/W9vRWGs/Screenshot-2025-12-31-124650.png" width="48%" />
+  <img src="https://i.ibb.co/S4xnLPv0/Screenshot-2025-12-31-124740.png" width="48%" />
+</p>
+
+
 ## 🛠️ Technologies Used
 
 - **Frontend:** Next.js 16 (App Router), Tailwind CSS  
