@@ -30,7 +30,6 @@ It includes secure authentication, protected routes, and a smooth loading spinne
   <img src="https://i.ibb.co/DDNMy27N/Screenshot-2025-12-31-124634.png" width="48%" />
 </p>
 <p align="center">
-  <img src="https://i.ibb.co/W9vRWGs/Screenshot-2025-12-31-124650.png" width="48%" />
   <img src="https://i.ibb.co/S4xnLPv0/Screenshot-2025-12-31-124740.png" width="48%" />
 </p>
 
